@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N6RKQ4HOhZn09KqlIWsrDtGoZyScUsPHZVb2UVoVhmNZ/nWmfdn+6FZhfcJ2MuRpkYNvvIAYOV/R/ugsUDTytg==",
+  "dgSpecHash": "p0yqxArlhsKUdT+OauvCCUEEemYzTMx0av4UEv7mGYY5RO2j4phHWi8HA6DtCiuJ2GxQXNnoo3ny1px28cJPXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\StandService\\StandService.csproj",
+  "projectFilePath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\StandService\\StandService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FrankMensah\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\FrankMensah\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.7\\microsoft.entityframeworkcore.5.0.7.nupkg.sha512",

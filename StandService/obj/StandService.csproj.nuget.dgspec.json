@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\StandService\\StandService.csproj": {}
+    "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\StandService\\StandService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\DataAcess\\DataAcess.csproj": {
+    "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\DataAcess\\DataAcess.csproj",
+        "projectUniqueName": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj",
         "projectName": "DataAcess",
-        "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\DataAcess\\DataAcess.csproj",
+        "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj",
         "packagesPath": "C:\\Users\\FrankMensah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\DataAcess\\obj\\",
+        "outputPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
@@ -91,14 +91,14 @@
         }
       }
     },
-    "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\StandService\\StandService.csproj": {
+    "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\StandService\\StandService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\StandService\\StandService.csproj",
+        "projectUniqueName": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\StandService\\StandService.csproj",
         "projectName": "StandService",
-        "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\StandService\\StandService.csproj",
+        "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\StandService\\StandService.csproj",
         "packagesPath": "C:\\Users\\FrankMensah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\StandService\\obj\\",
+        "outputPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\StandService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
@@ -134,8 +134,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\DataAcess\\DataAcess.csproj": {
-                "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallService\\DataAcess\\DataAcess.csproj"
+              "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj": {
+                "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj"
               }
             }
           }
