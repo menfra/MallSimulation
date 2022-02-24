@@ -21,11 +21,42 @@ namespace MallService.Controllers
         {
             _mallBusiness = mallBusiness;
         }
+
         // GET: api/<MallController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("Get Mall Opened Status")]
+        public IActionResult GetMallOpenedStatus()
         {
-            return new string[] { "1", "2"};
+            try
+            {
+                var mall = _mallBusiness.GetMallOpenedStatus();
+                return Ok(mall.OpenedState.ToString());
+            }
+            catch (Exception)
+            {
+
+                return NotFound("The requested service could not be found");
+            }
+           
+        }
+
+        // GET: api/<MallController>
+        [HttpGet("Get Mall Open and Close Duration")]
+        public IActionResult GetMallOpenCloseDuration()
+        {
+            try
+            {
+                var mall = _mallBusiness.GetMallOpenCloseDuration();
+                if (mall.OpenClosedDuration > 0)
+                    return Ok(mall.OpenClosedDuration.ToString());
+                else
+                    return Problem("There Seem to be an invalid input for the mall open and close duration.");
+            }
+            catch (Exception)
+            {
+
+                return NotFound("There Seem to be an invalid input for the mall open and close duration.");
+            }
+
         }
 
         // GET api/<MallController>/5

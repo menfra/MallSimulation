@@ -5,6 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using DataAcess.Enums;
+using System.Timers;
+using MallService.Extensions;
 
 namespace MallService.MallBusinessLayer
 {
@@ -12,11 +16,37 @@ namespace MallService.MallBusinessLayer
     {
         private readonly Mall _mall;
         private readonly IDataServices _dataServices;
-        public MallBusiness(IEntity mall, IDataServices dataServices)
+        private readonly IConfiguration _configuration;
+
+        public MallBusiness(IEntity mall, IDataServices dataServices, IConfiguration configuration)
         {
             _mall = mall as Mall;
             _dataServices = dataServices;
+            _configuration = configuration;
+
+            _mall.OpenedState = ConfigValues.MallOpenedStatus;
         }
+
+        public Mall GetMallOpenedStatus()
+        {
+            return _mall;
+        }
+
+        public Mall GetMallOpenCloseDuration()
+        {
+            try
+            {
+                int.TryParse(ConfigValues.MallOpenCloseDuration, out int duration);
+                _mall.OpenClosedDuration = duration;
+                return _mall;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public Task<Stand> AddStand(Stand stand)
         {
             throw new NotImplementedException();
@@ -27,12 +57,7 @@ namespace MallService.MallBusinessLayer
             throw new NotImplementedException();
         }
 
-        public Task<Mall> GetMallOpenedStatus()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Stand> GetStand(string Id)
+        public async Task<Stand> GetStand(string Id)
         {
             throw new NotImplementedException();
         }

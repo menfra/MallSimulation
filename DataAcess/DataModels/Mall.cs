@@ -10,5 +10,6 @@ namespace DataAcess.DataModels
         public string DisplayName { get; set; } = "Accra Mall Spintex";
         public States OpenedState { get; set; } = States.Closed;
         public Capacity MallCapacity { get; set; } = Capacity.UnLimited;
+        public int OpenClosedDuration { get; set; }
     }
 }

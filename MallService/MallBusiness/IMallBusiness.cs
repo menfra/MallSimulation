@@ -8,8 +8,9 @@ namespace MallService.MallBusinessLayer
 {
     public interface IMallBusiness
     {
-        Task<Mall> GetMallOpenedStatus();
+        Mall GetMallOpenedStatus();
         Task<Mall> SetMallOpenedStatus();
+        Mall GetMallOpenCloseDuration();
         Task<Mall> SetMallCapacity();
         Task<Stand> GetStand(string Id);
         Task<List<Stand>> GetStands();

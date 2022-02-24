@@ -4,16 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAcess.DataServices
 {
     public class MongoDataServices : IDataServices
     {
         private readonly IMongoDatabase db;
-        public MongoDataServices()
+        private readonly IConfiguration _configuration;
+
+        public MongoDataServices(IConfiguration configuration)
         {
-            var client = new MongoClient("");
-            db = client.GetDatabase("");
+            _configuration = configuration;
+
+            var client = new MongoClient(configuration["MongoConnectionString"]);
+            db = client.GetDatabase(configuration["MallService:Settings:DB"]);
         }
         public async Task AddData<T>(T tdata)
         {

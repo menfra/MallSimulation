@@ -15,14 +15,40 @@ using DataAcess.DataModels;
 using DataAcess.Interfaces;
 using DataAcess.DataServices;
 using MallService.MallBusinessLayer;
+using MallService.Extensions;
+using DataAcess.Enums;
+using System.Timers;
 
 namespace MallService
 {
     public class Startup
     {
+        private readonly Timer timer;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConfigValues.MallOpenCloseDuration = Configuration["MallService:Settings:OpenCloseDuration"];
+            ConfigValues.MallOpenedStatus = Configuration["MallService:Settings:OpenedStatus"].Equals("Opened") ? States.Opened : States.Closed;
+            ConfigValues.InMallCustomers = Configuration["MallService:Settings:Capacity"].Equals("UnLimited") ? Capacity.UnLimited : Capacity.Limited;
+            
+            int.TryParse(ConfigValues.MallOpenCloseDuration, out int duration);
+            timer = new Timer(duration);
+            timer.Elapsed += OnTimedEvent;
+            timer.Start();
+        }
+
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            if (ConfigValues.FirstTime)
+            {
+                ConfigValues.FirstTime = false;
+                return;
+            }
+
+            if (ConfigValues.MallOpenedStatus == States.Opened)
+                ConfigValues.MallOpenedStatus = States.Closed;
+            else
+                ConfigValues.MallOpenedStatus = States.Opened;
         }
 
         public IConfiguration Configuration { get; }
@@ -31,9 +57,9 @@ namespace MallService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IEntity, Mall>();
+            services.AddTransient<IEntity, Mall>();
             services.AddScoped<IDataServices, MongoDataServices>();
-            services.AddScoped<IMallBusiness, MallBusiness>();
+            services.AddTransient<IMallBusiness, MallBusiness>();
 
             // Register the Swagger Generator service. This service is responsible for genrating Swagger Documents.
             // Note: Add this service at the end after AddMvc() or AddMvcCore().
