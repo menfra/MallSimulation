@@ -7,12 +7,17 @@ namespace DataAcess.DataServices
 {
     public class PostgresDataServices : IDataServices
     {
-        public Task AddData<T>(T tdata)
+        public Task<T> AddData<T>(T tdata)
         {
             throw new NotImplementedException();
         }
 
         public Task DeleteData<T>(string Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteDataBulk<T>(List<string> Ids)
         {
             throw new NotImplementedException();
         }
@@ -28,6 +33,11 @@ namespace DataAcess.DataServices
         }
 
         public Task UpSertData<T>(string Id, T tdata)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpSertDataBulk<T>(List<string> Ids, T tdata)
         {
             throw new NotImplementedException();
         }

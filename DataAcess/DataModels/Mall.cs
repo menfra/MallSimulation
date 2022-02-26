@@ -5,11 +5,11 @@ namespace DataAcess.DataModels
 {
     public class Mall : IMall
     {
-        public string Id { get; set; } = "A1";
-        public string Name { get; set; } = "Accra Mall";
-        public string DisplayName { get; set; } = "Accra Mall Spintex";
-        public States OpenedState { get; set; } = States.Closed;
-        public Capacity MallCapacity { get; set; } = Capacity.UnLimited;
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public States OpenedState { get; set; }
+        public Capacity MallCapacity { get; set; }
         public int OpenClosedDuration { get; set; }
     }
 }

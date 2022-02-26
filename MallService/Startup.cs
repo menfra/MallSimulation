@@ -20,7 +20,11 @@ using BusinessLogics.CustomerBusiness;
 using BusinessLogics.Extensions;
 using DataAcess.Enums;
 using System.Timers;
-
+using AutoMapper;
+using BusinessLogics.Mapping;
+using FluentValidation.AspNetCore;
+using System.Reflection;
+using BusinessLogics.Validators;
 
 namespace MallService
 {
@@ -59,7 +63,20 @@ namespace MallService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddControllers().AddFluentValidation(s =>
+            {
+                s.RegisterValidatorsFromAssemblyContaining<CustomerValidator>();
+                s.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            });
             services.AddTransient<IMall, Mall>();
             services.AddTransient<ICustomer, Customer>();
             services.AddTransient<IProduct, Product>();

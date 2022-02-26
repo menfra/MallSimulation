@@ -1,4 +1,5 @@
-﻿using DataAcess.DataModels;
+﻿using BusinessLogics.DTO;
+using DataAcess.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,11 @@ namespace BusinessLogics.MallBusiness
     public interface IMallBusiness
     {
         Mall GetMallOpenedStatus();
-        Task<Mall> SetMallOpenedStatus();
         Mall GetMallOpenCloseDuration();
-        Task<Mall> SetMallCapacity();
         Task<Stand> GetStand(string Id);
         Task<List<Stand>> GetStands();
-        Task<Stand> AddStand(Stand stand);
-        Task<Stand> UpdateStand(string Id, Stand stand);
+        Task<Stand> AddStand(StandDTO standDTO);
+        Task UpdateStand(StandDTO standDTO);
         Task DeleteStand(string Id);
     }
 }

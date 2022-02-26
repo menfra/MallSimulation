@@ -139,3 +139,8 @@ C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\obj\Debug\netcoreapp3
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\obj\Debug\netcoreapp3.1\MallService.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\BusinessLogics.dll
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\BusinessLogics.pdb
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll

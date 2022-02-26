@@ -31,12 +31,21 @@ namespace DataAcess.DataServices
         Task UpSertData<T>(string Id, T tdata);
 
         /// <summary>
+        /// Updates bulk table data 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Ids"></param>
+        /// <param name="tdata"></param>
+        /// <returns></returns>
+        Task UpSertDataBulk<T>(List<string> Ids, T tdata);
+
+        /// <summary>
         /// Method Adds new data
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tdata"></param>
         /// <returns></returns>
-        Task AddData<T>(T tdata);
+        Task<T> AddData<T>(T tdata);
 
         /// <summary>
         /// Deletes table data
@@ -45,5 +54,13 @@ namespace DataAcess.DataServices
         /// <param name="Id"></param>
         /// <returns></returns>
         Task DeleteData<T>(string Id);
+
+        /// <summary>
+        /// Deletes bulk data from the table
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Ids"></param>
+        /// <returns></returns>
+        Task DeleteDataBulk<T>(List<string> Ids);
     }
 }

@@ -10,6 +10,7 @@ namespace DataAcess.DataModels
         public string Id { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
-        public List<string> ProductId { get; set; }
+        public List<string> ProductIds { get; set; }
+        public int Duration { get; set; }
     }
 }

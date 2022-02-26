@@ -16,11 +16,9 @@ namespace MallService.Controllers
     public class MallController : ControllerBase
     {
         private readonly IMallBusiness _mallBusiness;
-        private readonly IStandBusiness _standBusiness;
-        public MallController(IMallBusiness mallBusiness, IStandBusiness standBusiness)
+        public MallController(IMallBusiness mallBusiness)
         {
             _mallBusiness = mallBusiness;
-            _standBusiness = standBusiness;
         }
 
         // GET: api/<MallController>
@@ -62,28 +60,91 @@ namespace MallService.Controllers
 
         // POST api/<MallController>
         [HttpPost]
-        public void CreateStand([FromBody] Stand stand)
+        public void CreateStand([FromBody] StandDTO stand)
         {
+            try
+            {
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        // GET api/<MallController>/5
-        [HttpGet("{id}")]
-        public string Get(string id)
+        // POST api/<StandController>
+        [HttpPost("addStand")]
+        public async Task<IActionResult> AddStand([FromBody] StandDTO standDTO)
         {
-            return "value";
+            try
+            {
+                DataAcess.DataModels.Stand stand = await _mallBusiness.AddStand(standDTO);
+                return Created($"Stand with Id: {stand.Id} has been added.", stand);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        // PUT api/<MallController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<MallController>/5
+        // Delete api/<StandController>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeleteStand(string Id)
         {
+            try
+            {
+                await _mallBusiness.DeleteStand(Id);
+                return Ok($"Stand with Id: {Id} has been deleted.");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, null, 500);
+            }
+        }
+
+        // Get api/<StandController>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetStand(string Id)
+        {
+            try
+            {
+                DataAcess.DataModels.Stand stand = await _mallBusiness.GetStand(Id);
+                return Ok(stand);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, null, 500);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetStands()
+        {
+            try
+            {
+                var stands = await _mallBusiness.GetStands();
+                return Ok(stands);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, null, 500);
+            }
+        }
+
+        // Put api/<StandController>
+        [HttpPut("updateSingle")]
+        public async Task<IActionResult> UpdateStand([FromBody] StandDTO standDTO)
+        {
+            try
+            {
+                await _mallBusiness.UpdateStand(standDTO);
+                return Ok($"Stand with Id: {standDTO.Id} has been updated.");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, null, 500);
+            }
         }
     }
 }

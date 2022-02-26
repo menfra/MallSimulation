@@ -4,7 +4,10 @@ using System.Text;
 
 namespace BusinessLogics.DTO
 {
-    public class Customer
+    public class CustomerDTO
     {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
     }
 }

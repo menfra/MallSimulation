@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using DataAcess.Enums;
 using System.Timers;
 using BusinessLogics.Extensions;
+using BusinessLogics.DTO;
+using BusinessLogics.StandBusiness;
 
 namespace BusinessLogics.MallBusiness
 {
@@ -17,12 +19,14 @@ namespace BusinessLogics.MallBusiness
         private readonly Mall _mall;
         private readonly IDataServices _dataServices;
         private readonly IConfiguration _configuration;
+        private readonly IStandBusiness _standBusiness;
 
-        public MallBusiness(IMall mall, IDataServices dataServices, IConfiguration configuration)
+        public MallBusiness(IMall mall, IDataServices dataServices, IConfiguration configuration, IStandBusiness standBusiness)
         {
             _mall = mall as Mall;
             _dataServices = dataServices;
             _configuration = configuration;
+            _standBusiness = standBusiness;
 
             _mall.OpenedState = ConfigValues.MallOpenedStatus;
         }
@@ -36,7 +40,7 @@ namespace BusinessLogics.MallBusiness
         {
             try
             {
-                int.TryParse(ConfigValues.MallOpenCloseDuration, out int duration);
+                _ = int.TryParse(ConfigValues.MallOpenCloseDuration, out int duration);
                 _mall.OpenClosedDuration = duration;
                 return _mall;
             }
@@ -47,39 +51,69 @@ namespace BusinessLogics.MallBusiness
 
         }
 
-        public Task<Stand> AddStand(Stand stand)
+        public async Task<Stand> AddStand(StandDTO standDTO)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _standBusiness.AddStand(standDTO);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public Task DeleteStand(string Id)
+        public async Task DeleteStand(string Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _standBusiness.DeleteStand(Id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<Stand> GetStand(string Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _standBusiness.GetStand(Id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public Task<List<Stand>> GetStands()
+        public async Task<List<Stand>> GetStands()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _standBusiness.GetStands();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public Task<Mall> SetMallCapacity()
+        public async Task UpdateStand(StandDTO standDTO)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                await _standBusiness.UpdateStand(standDTO);
+            }
+            catch (Exception)
+            {
 
-        public Task<Mall> SetMallOpenedStatus()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Stand> UpdateStand(string Id, Stand stand)
-        {
-            throw new NotImplementedException();
+                throw;
+            }
         }
     }
 }
