@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MallService.MallBusinessLayer
+namespace BusinessLogics.StandBusiness
 {
-    public interface IMallBusiness
+    public interface IStandBusiness
     {
-        Mall GetMallOpenedStatus();
-        Task<Mall> SetMallOpenedStatus();
-        Mall GetMallOpenCloseDuration();
-        Task<Mall> SetMallCapacity();
+
         Task<Stand> GetStand(string Id);
         Task<List<Stand>> GetStands();
         Task<Stand> AddStand(Stand stand);

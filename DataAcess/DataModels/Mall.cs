@@ -3,7 +3,7 @@ using DataAcess.Enums;
 
 namespace DataAcess.DataModels
 {
-    public class Mall : IEntity
+    public class Mall : IMall
     {
         public string Id { get; set; } = "A1";
         public string Name { get; set; } = "Accra Mall";

@@ -137,3 +137,5 @@ C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\obj\Debug\netcoreapp3
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\obj\Debug\netcoreapp3.1\MallService.pdb
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\obj\Debug\netcoreapp3.1\MallService.genruntimeconfig.cache
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\obj\Debug\netcoreapp3.1\MallService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\BusinessLogics.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallService\bin\Debug\netcoreapp3.1\BusinessLogics.pdb

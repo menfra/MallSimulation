@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAcess.DataModels
 {
-    public class Stand : IEntity
+    public class Stand : IStand
     {
         public string Id { get; set; }
         public string Name { get; set; }

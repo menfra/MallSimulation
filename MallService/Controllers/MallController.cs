@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAcess.DataModels;
-using DataAcess.Interfaces;
-using DataAcess.DataServices;
-using MallService.MallBusinessLayer;
+using BusinessLogics.MallBusiness;
+using BusinessLogics.StandBusiness;
+using BusinessLogics.DTO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,14 +15,16 @@ namespace MallService.Controllers
     [ApiController]
     public class MallController : ControllerBase
     {
-        private IMallBusiness _mallBusiness;
-        public MallController(IMallBusiness mallBusiness)
+        private readonly IMallBusiness _mallBusiness;
+        private readonly IStandBusiness _standBusiness;
+        public MallController(IMallBusiness mallBusiness, IStandBusiness standBusiness)
         {
             _mallBusiness = mallBusiness;
+            _standBusiness = standBusiness;
         }
 
         // GET: api/<MallController>
-        [HttpGet("Get Mall Opened Status")]
+        [HttpGet("MallOpenedStatus")]
         public IActionResult GetMallOpenedStatus()
         {
             try
@@ -40,7 +41,7 @@ namespace MallService.Controllers
         }
 
         // GET: api/<MallController>
-        [HttpGet("Get Mall Open and Close Duration")]
+        [HttpGet("MallOpenCloseDuration")]
         public IActionResult GetMallOpenCloseDuration()
         {
             try
@@ -59,17 +60,18 @@ namespace MallService.Controllers
 
         }
 
+        // POST api/<MallController>
+        [HttpPost]
+        public void CreateStand([FromBody] Stand stand)
+        {
+
+        }
+
         // GET api/<MallController>/5
         [HttpGet("{id}")]
         public string Get(string id)
         {
             return "value";
-        }
-
-        // POST api/<MallController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
         // PUT api/<MallController>/5

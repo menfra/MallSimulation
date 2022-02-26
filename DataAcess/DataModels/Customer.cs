@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAcess.DataModels
 {
-    public class Customer : IEntity
+    public class Customer : ICustomer
     {
         public string Id { get; set; }
         public string Name { get; set; }

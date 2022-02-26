@@ -600,6 +600,19 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
+      "BusinessLogics/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DataAcess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessLogics.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessLogics.dll": {}
+        }
+      },
       "DataAcess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -1765,6 +1778,11 @@
         "version.txt"
       ]
     },
+    "BusinessLogics/1.0.0": {
+      "type": "project",
+      "path": "../BusinessLogics/BusinessLogics.csproj",
+      "msbuildProject": "../BusinessLogics/BusinessLogics.csproj"
+    },
     "DataAcess/1.0.0": {
       "type": "project",
       "path": "../DataAcess/DataAcess.csproj",
@@ -1773,7 +1791,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DataAcess >= 1.0.0",
+      "BusinessLogics >= 1.0.0",
       "Microsoft.Extensions.Configuration.AzureAppConfiguration >= 5.0.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.11.1",
       "Swashbuckle.AspNetCore.Swagger >= 6.2.3",
@@ -1830,8 +1848,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj": {
-              "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\DataAcess\\DataAcess.csproj"
+            "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\BusinessLogics\\BusinessLogics.csproj": {
+              "projectPath": "C:\\Users\\FrankMensah\\Desktop\\PP\\MallSimulation\\BusinessLogics\\BusinessLogics.csproj"
             }
           }
         }

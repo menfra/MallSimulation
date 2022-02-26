@@ -1,0 +1,13 @@
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\bin\Debug\netcoreapp3.1\BusinessLogics.deps.json
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\bin\Debug\netcoreapp3.1\BusinessLogics.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\bin\Debug\netcoreapp3.1\BusinessLogics.pdb
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\bin\Debug\netcoreapp3.1\DataAcess.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\bin\Debug\netcoreapp3.1\DataAcess.pdb
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.csproj.AssemblyReference.cache
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.AssemblyInfoInputs.cache
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.AssemblyInfo.cs
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.csproj.CoreCompileInputs.cache
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.csproj.CopyComplete
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\BusinessLogics\obj\Debug\netcoreapp3.1\BusinessLogics.pdb

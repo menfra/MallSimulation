@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAcess.DataModels
 {
-    public class Product : IEntity
+    public class Product : IProduct
     {
         public string Id { get; set; }
         public string Name { get; set; }

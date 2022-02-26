@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DataAcess.Enums;
 using System.Timers;
-using MallService.Extensions;
+using BusinessLogics.Extensions;
 
-namespace MallService.MallBusinessLayer
+namespace BusinessLogics.MallBusiness
 {
     public class MallBusiness : IMallBusiness
     {
@@ -18,7 +18,7 @@ namespace MallService.MallBusinessLayer
         private readonly IDataServices _dataServices;
         private readonly IConfiguration _configuration;
 
-        public MallBusiness(IEntity mall, IDataServices dataServices, IConfiguration configuration)
+        public MallBusiness(IMall mall, IDataServices dataServices, IConfiguration configuration)
         {
             _mall = mall as Mall;
             _dataServices = dataServices;

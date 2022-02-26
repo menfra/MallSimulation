@@ -14,10 +14,13 @@ using System.Threading.Tasks;
 using DataAcess.DataModels;
 using DataAcess.Interfaces;
 using DataAcess.DataServices;
-using MallService.MallBusinessLayer;
-using MallService.Extensions;
+using BusinessLogics.StandBusiness;
+using BusinessLogics.MallBusiness;
+using BusinessLogics.CustomerBusiness;
+using BusinessLogics.Extensions;
 using DataAcess.Enums;
 using System.Timers;
+
 
 namespace MallService
 {
@@ -57,9 +60,14 @@ namespace MallService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IEntity, Mall>();
+            services.AddTransient<IMall, Mall>();
+            services.AddTransient<ICustomer, Customer>();
+            services.AddTransient<IProduct, Product>();
+            services.AddTransient<IStand, Stand>();
             services.AddScoped<IDataServices, MongoDataServices>();
             services.AddTransient<IMallBusiness, MallBusiness>();
+            services.AddTransient<IStandBusiness, StandBusiness>();
+            services.AddTransient<ICustomerBusiness, CustomerBusiness>();
 
             // Register the Swagger Generator service. This service is responsible for genrating Swagger Documents.
             // Note: Add this service at the end after AddMvc() or AddMvcCore().
