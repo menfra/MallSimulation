@@ -22,16 +22,16 @@ namespace CustomerService.Controllers
         }
 
         // POST api/<CustomerController>
-        [HttpPost("addCustomer{Id}")]
-        public async Task<IActionResult> AddCustomer(string Id, [FromBody] CustomerDTO customerDTO)
+        [HttpPost("addCustomer/{standId}")]
+        public async Task<IActionResult> AddCustomer(string standId, [FromBody] CustomerDTO customerDTO)
         {
             try
             {
-                var result = await _customerBusiness.AddCustomer(Id, customerDTO);
+                var result = await _customerBusiness.AddCustomer(standId, customerDTO);
                 if (result.Status == false)
                 {
                     var customer = result.Data.FirstOrDefault() as CustomerDTO;
-                    return Created($"Custo with Id: {customer.Id} has been added.", customer);
+                    return Created($"Customer with Id: {customer.Id} has been added.", customer);
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace CustomerService.Controllers
         }
 
         // Get api/<CustomerController>
-        [HttpGet("{id}")]
+        [HttpGet("getCustomerById/{Id}")]
         public async Task<IActionResult> GetCustomer(string Id)
         {
             try
@@ -72,7 +72,7 @@ namespace CustomerService.Controllers
         }
 
         // Get api/<CustomerController>
-        [HttpGet("allCustomers")]
+        [HttpGet("getAllCustomers")]
         public async Task<IActionResult> GetCustomers()
         {
             try
@@ -97,7 +97,7 @@ namespace CustomerService.Controllers
         }
 
         // Get api/<CustomerController>
-        [HttpGet("allCustomersByIds")]
+        [HttpPost("getAllCustomersByIds")]
         public async Task<IActionResult> GetCustomers([FromBody] List<string> Ids)
         {
             try
@@ -122,7 +122,7 @@ namespace CustomerService.Controllers
         }
 
         // Put api/<CustomerController>
-        [HttpPut("updateSingle")]
+        [HttpPut("updateCustomer")]
         public async Task<IActionResult> UpdateCustomer([FromBody] CustomerDTO customerDTO)
         {
             try
@@ -147,7 +147,7 @@ namespace CustomerService.Controllers
         }
 
         // Put api/<CustomerController>
-        [HttpPut("updateList")]
+        [HttpPut("updateCustomers")]
         public async Task<IActionResult> UpdateCustomers([FromBody] List<CustomerDTO> customerDTOs)
         {
             try
@@ -171,8 +171,8 @@ namespace CustomerService.Controllers
         }
 
         // Delete api/<CustomerController>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStand(string Id)
+        [HttpDelete("deleteCustomerById/{Id}")]
+        public async Task<IActionResult> DeleteCustomer(string Id)
         {
             try
             {
@@ -201,7 +201,7 @@ namespace CustomerService.Controllers
         }
 
         // Post api/<CustomerController>
-        [HttpPost("buyProduct{Id}")]
+        [HttpPost("buyProductByCustomerId/{Id}")]
         public async Task<IActionResult> BuyProduct(string Id)
         {
             try
@@ -225,7 +225,7 @@ namespace CustomerService.Controllers
         }
 
         // Post api/<CustomerController>
-        [HttpPost("addProduct{Id}")]
+        [HttpPost("addProductByCustomerId/{Id}")]
         public async Task<IActionResult> AddProduct(string Id, [FromBody] StandDTO standDTO)
         {
             try

@@ -27,16 +27,19 @@ namespace StandService.Controllers
             try
             {
                 DataAcess.DataModels.Stand stand = await _standBusiness.AddStand(standDTO);
-                return Created($"Stand with Id: {stand.Id} has been added.", stand);
+                if (stand != null)
+                    return Created($"Stand with Id: {stand.Id} has been added.", stand);
+                else
+                    return Problem($"Stand with Id: {stand.Id} has been added.", null, 500);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return Problem(ex.Message, null, 500);
             }
         }
 
         // Delete api/<StandController>
-        [HttpDelete("{id}")]
+        [HttpDelete("deleteStand/{Id}")]
         public async Task<IActionResult> DeleteStand(string Id)
         {
             try
@@ -66,7 +69,7 @@ namespace StandService.Controllers
         }
 
         // Delete api/<StandController>
-        [HttpDelete("productId/{id}")]
+        [HttpDelete("deleteStandByproductId/{Id}")]
         public async Task<IActionResult> DeleteStandProductId(string Id)
         {
             try
@@ -81,13 +84,16 @@ namespace StandService.Controllers
         }
 
         // Get api/<StandController>
-        [HttpGet("{id}")]
+        [HttpGet("getStandById/{Id}")]
         public async Task<IActionResult> GetStand(string Id)
         {
             try
             {
                 DataAcess.DataModels.Stand stand = await _standBusiness.GetStand(Id);
-                return Ok(stand);
+                if (stand != null)
+                    return Ok(stand);
+                else
+                    return Problem($"Could not find stand with Id {Id}", null, 404);
             }
             catch (Exception ex)
             {
@@ -95,7 +101,7 @@ namespace StandService.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("getAllStands")]
         public async Task<IActionResult> GetStands()
         {
             try
@@ -110,7 +116,7 @@ namespace StandService.Controllers
         }
 
         // Get api/<StandController>
-        [HttpGet("productId/{id}")]
+        [HttpGet("getStandByProductId/{Id}")]
         public async Task<IActionResult> GetStandByProductId(string Id)
         {
             try
@@ -125,7 +131,7 @@ namespace StandService.Controllers
         }
 
         // Put api/<StandController>
-        [HttpPut("updateSingle")]
+        [HttpPut("updateStand")]
         public async Task<IActionResult> UpdateStand([FromBody] StandDTO standDTO)
         {
             try
@@ -140,7 +146,7 @@ namespace StandService.Controllers
         }
 
         // Put api/<StandController>
-        [HttpPut("updateBulk")]
+        [HttpPut("updateStandBulk")]
         public async Task<IActionResult> UpdateStandBulk([FromBody] List<StandDTO> standDTOs)
         {
             try

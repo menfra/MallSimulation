@@ -7,7 +7,7 @@ namespace BusinessLogics.DTO
     public class OperationalResult
     {
         //True or False status of operation
-        public bool Status { get; set; } = true;
+        public bool Status { get; set; } = false;
         //Single messsage from operation
         public string Message { get; set; }
         //Result of successfully operation

@@ -35,11 +35,11 @@ namespace BusinessLogics.CustomerBusiness
         {
             try
             {
-                var result = new OperationalResult { };
+                var result = new OperationalResult();
 
                 // A customer is added to a queue on a stand
                 var stand = await _standBusiness.GetStand(standID);
-                if (stand != null)
+                if (stand == null)
                 {
                     result.Status = true;
                     result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The stand specified could not be found" });
@@ -95,13 +95,6 @@ namespace BusinessLogics.CustomerBusiness
                     result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified could not be found" });
                     return result;
                 }
-
-
-                //// Read stands for this Customer
-                //var stands = await _standBusiness.GetStands();
-
-                //// search stands customer posses
-                //var customersStands = stands.Where(s => s.CustomerQueue.Contains(customer.Id)).ToList();
                 
                 // A customerDTO is created 
                 var returncustomerDTO = _mapper.Map<CustomerDTO>(customer);
@@ -229,7 +222,6 @@ namespace BusinessLogics.CustomerBusiness
         {
             try
             {
-
                 var result = new OperationalResult();
 
                 // first get the customer

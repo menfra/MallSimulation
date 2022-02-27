@@ -74,23 +74,9 @@ namespace MallService.Controllers
             }
         }
 
-        // Delete api/<StandController>
-        [HttpDelete("standId/{id}")]
-        public async Task<IActionResult> DeleteStand(string Id)
-        {
-            try
-            {
-                await _mallBusiness.DeleteStand(Id);
-                return Ok($"Stand with Id: {Id} has been deleted.");
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message, null, 500);
-            }
-        }
 
         // Get api/<StandController>
-        [HttpGet("standId/{id}")]
+        [HttpGet("getStandId/{Id}")]
         public async Task<IActionResult> GetStand(string Id)
         {
             try
@@ -119,13 +105,28 @@ namespace MallService.Controllers
         }
 
         // Put api/<StandController>
-        [HttpPut("updateSingle")]
+        [HttpPut("updateStand")]
         public async Task<IActionResult> UpdateStand([FromBody] StandDTO standDTO)
         {
             try
             {
                 await _mallBusiness.UpdateStand(standDTO);
                 return Ok($"Stand with Id: {standDTO.Id} has been updated.");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, null, 500);
+            }
+        }
+
+        // Delete api/<StandController>
+        [HttpDelete("deleteStandId/{Id}")]
+        public async Task<IActionResult> DeleteStand(string Id)
+        {
+            try
+            {
+                await _mallBusiness.DeleteStand(Id);
+                return Ok($"Stand with Id: {Id} has been deleted.");
             }
             catch (Exception ex)
             {
