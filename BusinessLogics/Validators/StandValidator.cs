@@ -13,7 +13,8 @@ namespace BusinessLogics.Validators
             RuleFor(c => c.Id).NotEmpty();
             RuleFor(c => c.DisplayName).NotEmpty();
             RuleFor(c => c.Name).NotEmpty();
-            
+            RuleFor(c => c.Duration).GreaterThan(0);
+
         }
     }
 }

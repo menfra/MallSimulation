@@ -67,7 +67,7 @@ namespace BusinessLogics.StandBusiness
             {
                 var stands = await GetStands();
 
-                var standsWithProductMatch = stands.Where(p => p.ProductIds.Any(id => id == Id)).ToList();
+                var standsWithProductMatch = stands.Where(s => s.Product.Id == Id).ToList();
                 await _dataServices.DeleteDataBulk<Stand>(standsWithProductMatch.Select(i=>i.Id).ToList());
             }
             catch (Exception)
@@ -108,7 +108,7 @@ namespace BusinessLogics.StandBusiness
             try
             {
                 var stands = await _dataServices.GetAllData<Stand>();
-                return stands.Where(s => s.ProductIds.Any(id=>id == Id)).ToList();
+                return stands.Where(s => s.Product.Id == Id).ToList();
             }
             catch (Exception)
             {
@@ -121,9 +121,13 @@ namespace BusinessLogics.StandBusiness
         {
             try
             {
-                //TODO: Only the duration can be updated
+                // A customer is added to a queue on a stand
+                var stand = await GetStand(standDTO.Id);
+                if (stand == null)
+                    return;
 
-                var stand = _mapper.Map<Stand>(standDTO);
+                // modify the Duration for the stand
+                stand.Duration = standDTO.Duration;
                 await _dataServices.UpSertData(stand.Id, stand);
             }
             catch (Exception)

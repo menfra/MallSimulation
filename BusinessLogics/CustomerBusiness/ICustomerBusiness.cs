@@ -1,4 +1,5 @@
-﻿using DataAcess.DataModels;
+﻿using BusinessLogics.DTO;
+using DataAcess.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,11 @@ namespace BusinessLogics.CustomerBusiness
 {
     public interface ICustomerBusiness
     {
-        Task<Customer> GetCustomer(string Id);
-        Task<List<Customer>> GetCustomers();
-        Task<Customer> AddCustomer(Stand stand);
-        Task<Customer> UpdateCustomer(string Id, Stand stand);
+        Task<OperationalResult> GetCustomer(string Id);
+        Task<OperationalResult> GetCustomers();
+        Task<OperationalResult> AddCustomer(string standID, CustomerDTO customerDTO);
+        Task<OperationalResult> UpdateCustomer(CustomerDTO customerDTO);
+        Task<OperationalResult> UpdateCustomers(List<CustomerDTO> customerDTOs);
         Task DeleteCustomer(string Id);
     }
 }

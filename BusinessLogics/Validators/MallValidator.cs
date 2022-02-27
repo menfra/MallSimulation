@@ -15,7 +15,7 @@ namespace BusinessLogics.Validators
             RuleFor(c => c.DisplayName).NotEmpty();
             RuleFor(c => c.Name).NotEmpty();
             RuleFor(c => c.OpenClosedDuration).GreaterThan(0);
-            RuleFor(c => c.OpenedState).Must(BeEitherOpenOrClosed); ; //Not sure
+            RuleFor(c => c.OpenedState).Must(BeEitherOpenOrClosed).WithMessage("The mall can onle be either Opened or Closed.");
         }
 
         private bool BeEitherOpenOrClosed(States arg)
