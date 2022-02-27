@@ -22,7 +22,7 @@ namespace MallService.Controllers
         }
 
         // GET: api/<MallController>
-        [HttpGet("MallOpenedStatus")]
+        [HttpGet("mallOpenedStatus")]
         public IActionResult GetMallOpenedStatus()
         {
             try
@@ -39,7 +39,7 @@ namespace MallService.Controllers
         }
 
         // GET: api/<MallController>
-        [HttpGet("MallOpenCloseDuration")]
+        [HttpGet("mallOpenCloseDuration")]
         public IActionResult GetMallOpenCloseDuration()
         {
             try
@@ -58,21 +58,7 @@ namespace MallService.Controllers
 
         }
 
-        // POST api/<MallController>
-        [HttpPost]
-        public void CreateStand([FromBody] StandDTO stand)
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
+       
         // POST api/<StandController>
         [HttpPost("addStand")]
         public async Task<IActionResult> AddStand([FromBody] StandDTO standDTO)
@@ -89,7 +75,7 @@ namespace MallService.Controllers
         }
 
         // Delete api/<StandController>
-        [HttpDelete("{id}")]
+        [HttpDelete("standId/{id}")]
         public async Task<IActionResult> DeleteStand(string Id)
         {
             try
@@ -104,7 +90,7 @@ namespace MallService.Controllers
         }
 
         // Get api/<StandController>
-        [HttpGet("{id}")]
+        [HttpGet("standId/{id}")]
         public async Task<IActionResult> GetStand(string Id)
         {
             try

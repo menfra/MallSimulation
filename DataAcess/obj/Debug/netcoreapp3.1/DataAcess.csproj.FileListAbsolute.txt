@@ -17,3 +17,4 @@ C:\Users\FrankMensah\Desktop\PP\MallSimulation\DataAcess\obj\Debug\netcoreapp3.1
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\DataAcess\obj\Debug\netcoreapp3.1\DataAcess.csproj.CoreCompileInputs.cache
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\DataAcess\obj\Debug\netcoreapp3.1\DataAcess.dll
 C:\Users\FrankMensah\Desktop\PP\MallSimulation\DataAcess\obj\Debug\netcoreapp3.1\DataAcess.pdb
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\DataAcess\obj\Debug\netcoreapp3.1\DataAcess.csproj.AssemblyReference.cache

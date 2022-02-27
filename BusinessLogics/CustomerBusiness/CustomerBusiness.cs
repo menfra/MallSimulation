@@ -42,7 +42,7 @@ namespace BusinessLogics.CustomerBusiness
                 if (stand != null)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The stand specified could not be found" });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The stand specified could not be found" });
                     return result;
                 }
                     
@@ -92,7 +92,7 @@ namespace BusinessLogics.CustomerBusiness
                 if (customer == null)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The Customer specified could not be found" });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified could not be found" });
                     return result;
                 }
 
@@ -186,14 +186,14 @@ namespace BusinessLogics.CustomerBusiness
                 if (customer == null)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The Customer specified could not be found" });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified could not be found" });
                     return result;
                 }
 
                 if (customer.Products.Count == 0)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The Customer specified has no products to purchase." });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified has no products to purchase." });
                     return result;
                 }
 
@@ -237,7 +237,7 @@ namespace BusinessLogics.CustomerBusiness
                 if (customer == null)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The Customer specified could not be found" });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified could not be found" });
                     return result;
                 }
 
@@ -246,13 +246,13 @@ namespace BusinessLogics.CustomerBusiness
                 if (stand == null)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The Stand specified could not be found" });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Stand specified could not be found" });
                     return result;
                 }
                 else if(stand.OutOfProducts)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "500", ErrorMessage = "This Stand is out of products. Kindly move to another Stand" });
+                    result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "This Stand is out of products. Kindly move to another Stand" });
                     return result;
                 }
 
@@ -260,20 +260,20 @@ namespace BusinessLogics.CustomerBusiness
                 if(customerTransaction!= null && customerTransaction.BoughtProducts.Any(p=>p.Id == standDTO.Product.Id))
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "500", ErrorMessage = "The product has already been bought, You cannot purchase from this stand again." });
+                    result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The product has already been bought, You cannot purchase from this stand again." });
                     return result;
                 }
 
                 if (customer.Products.Any(p=>p.Id == standDTO.Product.Id))
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "500", ErrorMessage = "The product is already in the list of Items to buy." });
+                    result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The product is already in the list of Items to buy." });
                     return result;
                 }
                 else if (customer.DoneShopping)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "500", ErrorMessage = "Sorry this Customer already left." });
+                    result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "Sorry this Customer already left." });
                     return result;
                 }
 
@@ -312,7 +312,7 @@ namespace BusinessLogics.CustomerBusiness
                 if (customer == null)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = "The Customer specified could not be found" });
+                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified could not be found" });
                     return result;
                 }
 
@@ -346,7 +346,7 @@ namespace BusinessLogics.CustomerBusiness
                     if (customer == null)
                     {
                         result.Status = true;
-                        result.ErrorList.Add(new Error { ErrorCode = "404", ErrorMessage = $"The Customer {customer.Id} specified could not be found" });
+                        result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = $"The Customer {customer.Id} specified could not be found" });
                     }
                     else
                     {
@@ -381,7 +381,7 @@ namespace BusinessLogics.CustomerBusiness
             }
         }
 
-        public async Task DeleteCustomer(List<string> Ids)
+        public async Task DeleteCustomers(List<string> Ids)
         {
             try
             {
