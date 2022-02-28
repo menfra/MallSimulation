@@ -1,0 +1,9 @@
+version: '3.6'
+
+services:
+      mallservice:
+        container_name: mallservice
+        ports:
+            - '48224:80'
+        image: 'menfra/jedox'
+        restart: always

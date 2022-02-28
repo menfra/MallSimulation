@@ -22,8 +22,8 @@ namespace MallService
                 .ConfigureWebHostDefaults(webBuilder =>
                 webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    var settings = config.Build();
-                    config.AddAzureAppConfiguration(settings["ConnectionStrings:AppConfig"]);
+                    var connectionString = config.Build().GetConnectionString("AppConfig");
+                    config.AddAzureAppConfiguration(connectionString);
                 })
                     .UseStartup<Startup>());
     }

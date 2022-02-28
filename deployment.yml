@@ -1,0 +1,40 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mallservice
+spec:
+  selector:
+    app: mallapp
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 8080
+      # Port to forward to inside the pod
+      targetPort: 80
+  type: LoadBalancer
+ 
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: malldeployment
+  labels:
+    app: mallapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: mallapp
+  template:
+    metadata:
+      labels:
+        app: mallapp
+    spec:
+      containers:
+      - name: mallapp
+        image: menfra/jedox
+        ports:
+        - containerPort: 80
