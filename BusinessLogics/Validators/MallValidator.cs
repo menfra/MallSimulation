@@ -11,11 +11,11 @@ namespace BusinessLogics.Validators
     {
         public MallValidator()
         {
-            RuleFor(c => c.Id).NotEmpty();
-            RuleFor(c => c.DisplayName).NotEmpty();
-            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c => c.Id).NotEmpty().NotEqual("string");
+            RuleFor(c => c.DisplayName).NotEqual("string");
+            RuleFor(c => c.Name).NotEqual("string");
             RuleFor(c => c.OpenClosedDuration).GreaterThan(0);
-            RuleFor(c => c.OpenedState).Must(BeEitherOpenOrClosed).WithMessage("The mall can onle be either Opened or Closed.");
+            RuleFor(c => c.OpenedState).Must(BeEitherOpenOrClosed).WithMessage("The mall can only be either Opened or Closed.");
         }
 
         private bool BeEitherOpenOrClosed(States arg)

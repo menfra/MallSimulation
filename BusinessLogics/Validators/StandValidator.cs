@@ -10,9 +10,9 @@ namespace BusinessLogics.Validators
     {
         public StandValidator()
         {
-            RuleFor(c => c.Id).NotEmpty();
-            RuleFor(c => c.DisplayName).NotEmpty();
-            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c => c.Id).NotEmpty().NotEqual("string");
+            RuleFor(c => c.DisplayName).NotEqual("string");
+            RuleFor(c => c.Name).NotEqual("string");
             RuleFor(c => c.Duration).GreaterThan(0);
 
         }

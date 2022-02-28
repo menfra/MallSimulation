@@ -11,8 +11,8 @@ namespace BusinessLogics.Validators
         public ProductValidator()
         {
             RuleFor(c => c.Id).NotEmpty();
-            RuleFor(c => c.DisplayName).NotEmpty();
-            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c => c.DisplayName).NotEqual("string");
+            RuleFor(c => c.Name).NotEqual("string");
         }
     }
 }

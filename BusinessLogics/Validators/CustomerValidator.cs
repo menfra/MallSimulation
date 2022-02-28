@@ -11,11 +11,11 @@ namespace BusinessLogics.Validators
     {
         public CustomerValidator()
         {
-            RuleFor(c => c.Id).NotEmpty();
-            RuleFor(c => c.DisplayName).NotEmpty();
-            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c => c.Id).NotEmpty().NotEqual("string");
+            RuleFor(c => c.DisplayName).NotEqual("string");
+            RuleFor(c => c.Name).NotEqual("string");
             RuleFor(c => c.Products).Must(HaveUniqueIds).WithMessage("List of ProductId to buy must be unique.");
-
+            RuleFor(c => c.CurrentStandJoined).NotEqual("string");
         }
 
         private bool HaveUniqueIds(List<ProductDTO> arg)
