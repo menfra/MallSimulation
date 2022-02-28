@@ -39,13 +39,13 @@ namespace StandService.Controllers
         }
 
         // Delete api/<StandController>
-        [HttpDelete("deleteStand/{Id}")]
-        public async Task<IActionResult> DeleteStand(string Id)
+        [HttpDelete("deleteStand/{standId}")]
+        public async Task<IActionResult> DeleteStand(string standId)
         {
             try
             {
-                await _standBusiness.DeleteStand(Id);
-                return Ok($"Stand with Id: {Id} has been deleted.");
+                await _standBusiness.DeleteStand(standId);
+                return Ok($"Stand with Id: {standId} has been deleted.");
             }
             catch (Exception ex)
             {
@@ -69,13 +69,13 @@ namespace StandService.Controllers
         }
 
         // Delete api/<StandController>
-        [HttpDelete("deleteStandByproductId/{Id}")]
-        public async Task<IActionResult> DeleteStandProductId(string Id)
+        [HttpDelete("deleteStandByproduct/{productId}")]
+        public async Task<IActionResult> DeleteStandProductId(string productId)
         {
             try
             {
-                await _standBusiness.DeleteStandProductId(Id);
-                return Ok($"Stand with Id: {Id} has been deleted.");
+                await _standBusiness.DeleteStandProductId(productId);
+                return Ok($"Stand with Id: {productId} has been deleted.");
             }
             catch (Exception ex)
             {
@@ -84,16 +84,16 @@ namespace StandService.Controllers
         }
 
         // Get api/<StandController>
-        [HttpGet("getStandById/{Id}")]
-        public async Task<IActionResult> GetStand(string Id)
+        [HttpGet("getStand/{standId}")]
+        public async Task<IActionResult> GetStand(string standId)
         {
             try
             {
-                DataAcess.DataModels.Stand stand = await _standBusiness.GetStand(Id);
+                DataAcess.DataModels.Stand stand = await _standBusiness.GetStand(standId);
                 if (stand != null)
                     return Ok(stand);
                 else
-                    return Problem($"Could not find stand with Id {Id}", null, 404);
+                    return Problem($"Could not find stand with Id {standId}", null, 404);
             }
             catch (Exception ex)
             {
@@ -116,12 +116,12 @@ namespace StandService.Controllers
         }
 
         // Get api/<StandController>
-        [HttpGet("getStandByProductId/{Id}")]
-        public async Task<IActionResult> GetStandByProductId(string Id)
+        [HttpGet("getStandByProduct/{productId}")]
+        public async Task<IActionResult> GetStandByProductId(string productId)
         {
             try
             {
-                var stands = await _standBusiness.GetStandsProductId(Id);
+                var stands = await _standBusiness.GetStandsProductId(productId);
                 return Ok(stands);
             }
             catch (Exception ex)

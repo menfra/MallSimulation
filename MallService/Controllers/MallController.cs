@@ -66,7 +66,10 @@ namespace MallService.Controllers
             try
             {
                 DataAcess.DataModels.Stand stand = await _mallBusiness.AddStand(standDTO);
-                return Created($"Stand with Id: {stand.Id} has been added.", stand);
+                if (stand != null)
+                    return Created($"Stand with Id: {stand.Id} has been added.", stand);
+                else
+                    return Problem($"Stand with Id: {stand.Id} has been added.", null, 500);
             }
             catch (Exception)
             {
@@ -76,13 +79,16 @@ namespace MallService.Controllers
 
 
         // Get api/<StandController>
-        [HttpGet("getStandId/{Id}")]
-        public async Task<IActionResult> GetStand(string Id)
+        [HttpGet("getStand/{standId}")]
+        public async Task<IActionResult> GetStand(string standId)
         {
             try
             {
-                DataAcess.DataModels.Stand stand = await _mallBusiness.GetStand(Id);
-                return Ok(stand);
+                DataAcess.DataModels.Stand stand = await _mallBusiness.GetStand(standId);
+                if (stand != null)
+                    return Ok(stand);
+                else
+                    return Problem($"Could not find stand with Id {standId}", null, 404);
             }
             catch (Exception ex)
             {
@@ -90,7 +96,7 @@ namespace MallService.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("getAllStands")]
         public async Task<IActionResult> GetStands()
         {
             try
@@ -120,13 +126,13 @@ namespace MallService.Controllers
         }
 
         // Delete api/<StandController>
-        [HttpDelete("deleteStandId/{Id}")]
-        public async Task<IActionResult> DeleteStand(string Id)
+        [HttpDelete("deleteStand/{standId}")]
+        public async Task<IActionResult> DeleteStand(string standId)
         {
             try
             {
-                await _mallBusiness.DeleteStand(Id);
-                return Ok($"Stand with Id: {Id} has been deleted.");
+                await _mallBusiness.DeleteStand(standId);
+                return Ok($"Stand with Id: {standId} has been deleted.");
             }
             catch (Exception ex)
             {

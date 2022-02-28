@@ -47,12 +47,12 @@ namespace CustomerService.Controllers
         }
 
         // Get api/<CustomerController>
-        [HttpGet("getCustomerById/{Id}")]
-        public async Task<IActionResult> GetCustomer(string Id)
+        [HttpGet("getCustomer/{customerId}")]
+        public async Task<IActionResult> GetCustomer(string customerId)
         {
             try
             {
-                var result = await _customerBusiness.GetCustomer(Id);
+                var result = await _customerBusiness.GetCustomer(customerId);
                 if (result.Status == false)
                 {
                     var customer = result.Data.FirstOrDefault() as CustomerDTO;
@@ -97,7 +97,7 @@ namespace CustomerService.Controllers
         }
 
         // Get api/<CustomerController>
-        [HttpPost("getAllCustomersByIds")]
+        [HttpPost("getCustomersByIds")]
         public async Task<IActionResult> GetCustomers([FromBody] List<string> Ids)
         {
             try
@@ -159,7 +159,7 @@ namespace CustomerService.Controllers
                 }
                 else
                 {
-                    var errors = string.Join("\n,", result.ErrorList.Select(e=>e.ErrorMessage));
+                    var errors = string.Join(" and also ", result.ErrorList.Select(e=>e.ErrorMessage));
                     return Problem(errors, null, 500);
                 }
 
@@ -171,13 +171,23 @@ namespace CustomerService.Controllers
         }
 
         // Delete api/<CustomerController>
-        [HttpDelete("deleteCustomerById/{Id}")]
-        public async Task<IActionResult> DeleteCustomer(string Id)
+        [HttpDelete("deleteCustomer/{customerId}")]
+        public async Task<IActionResult> DeleteCustomer(string customerId)
         {
             try
             {
-                await _customerBusiness.DeleteCustomer(Id);
-                return Ok($"Customer with Id: {Id} has been deleted.");
+                var result = await _customerBusiness.DeleteCustomer(customerId);
+                if (result.Status == false)
+                {
+                    return Ok($"Customer with Id: {customerId} has been deleted.");
+                }
+                else
+                {
+                    var error = result.ErrorList.FirstOrDefault();
+                    return Problem(error.ErrorMessage, null, error.ErrorCode);
+                }
+                
+                
             }
             catch (Exception ex)
             {
@@ -201,15 +211,15 @@ namespace CustomerService.Controllers
         }
 
         // Post api/<CustomerController>
-        [HttpPost("buyProductByCustomerId/{Id}")]
-        public async Task<IActionResult> BuyProduct(string Id)
+        [HttpPost("buyProductBy/{customerId}")]
+        public async Task<IActionResult> BuyProduct(string customerId)
         {
             try
             {
-                var result = await _customerBusiness.BuyProduct(Id);
+                var result = await _customerBusiness.BuyProduct(customerId);
                 if (result.Status == false)
                 {
-                    return Ok($"Customers {Id} has completed shopping.");
+                    return Ok($"Customers {customerId} has completed shopping.");
                 }
                 else
                 {
@@ -225,12 +235,12 @@ namespace CustomerService.Controllers
         }
 
         // Post api/<CustomerController>
-        [HttpPost("addProductByCustomerId/{Id}")]
-        public async Task<IActionResult> AddProduct(string Id, [FromBody] StandDTO standDTO)
+        [HttpPost("addProduct/{customerId}/{standId}")]
+        public async Task<IActionResult> AddProduct(string customerId, string standId)
         {
             try
             {
-                var result = await _customerBusiness.AddProduct(Id, standDTO);
+                var result = await _customerBusiness.AddProduct(customerId, standId);
                 if (result.Status == false)
                 {
                     var customer = result.Data.FirstOrDefault() as CustomerDTO;
