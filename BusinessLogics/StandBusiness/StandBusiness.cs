@@ -39,7 +39,22 @@ namespace BusinessLogics.StandBusiness
         {
             try
             {
-                await _dataServices.DeleteData<Stand>(Id);
+                // Get the stand
+                var stand = await GetStand(Id);
+                var stands = await GetStands();
+                // Get the next potential stand
+                var nextPotentialstand = stands.Where(s => s.Id != Id).FirstOrDefault();
+
+                if(stand != null && nextPotentialstand != null)
+                {
+                    nextPotentialstand.CustomerQueue.AddRange(stand.CustomerQueue);
+                    await _dataServices.UpSertData(nextPotentialstand.Id, nextPotentialstand);
+                    await _dataServices.DeleteData<Stand>(Id);
+                }
+                else
+                {
+                    await _dataServices.DeleteData<Stand>(Id);
+                }
             }
             catch (Exception)
             {
@@ -52,7 +67,10 @@ namespace BusinessLogics.StandBusiness
         {
             try
             {
+                // Get the stands
+                // Get the next potential stand
                 await _dataServices.DeleteDataBulk<Stand>(Ids);
+                // Assign customers to the next potential stand.
             }
             catch (Exception)
             {
@@ -65,10 +83,13 @@ namespace BusinessLogics.StandBusiness
         {
             try
             {
+                // Get the stands
+                // Get the next potential stand
                 var stands = await GetStands();
 
                 var standsWithProductMatch = stands.Where(s => s.Product.Id == Id).ToList();
                 await _dataServices.DeleteDataBulk<Stand>(standsWithProductMatch.Select(i=>i.Id).ToList());
+                // Assign customers to the next potential stand.
             }
             catch (Exception)
             {

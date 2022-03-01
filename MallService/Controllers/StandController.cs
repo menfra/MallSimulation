@@ -28,7 +28,7 @@ namespace StandService.Controllers
             {
                 DataAcess.DataModels.Stand stand = await _standBusiness.AddStand(standDTO);
                 if (stand != null)
-                    return Created($"Stand with Id: {stand.Id} has been added.", stand);
+                    return Created($"Stand with Id: {stand.Id} has been added.", stand.Id);
                 else
                     return Problem($"Stand with Id: {stand.Id} has been added.", null, 500);
             }
