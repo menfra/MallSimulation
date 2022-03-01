@@ -67,9 +67,31 @@ namespace BusinessLogics.StandBusiness
         {
             try
             {
-                // Get the stands
-                // Get the next potential stand
-                await _dataServices.DeleteDataBulk<Stand>(Ids);
+
+                // Get the stand
+                var stands = await GetStands();
+                // Get the next potential stands
+                var nextPotentialstands = stands.Where(s => !Ids.Any(i => i == s.Id)).ToList();
+
+                if (nextPotentialstands != null)
+                {
+                    var potentialStand = nextPotentialstands.FirstOrDefault();
+                    foreach(var Id in Ids)
+                    {
+                        var stand = await GetStand(Id);
+                        if (stand != null && potentialStand != null)
+                        {
+                            potentialStand.CustomerQueue.AddRange(stand.CustomerQueue);
+                            await _dataServices.UpSertData(potentialStand.Id, potentialStand);
+                            await _dataServices.DeleteData<Stand>(Id);
+                        }
+                    }
+                   
+                }
+                else
+                {
+                    await _dataServices.DeleteDataBulk<Stand>(Ids);
+                }
                 // Assign customers to the next potential stand.
             }
             catch (Exception)
