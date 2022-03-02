@@ -16,6 +16,7 @@ namespace BusinessLogics.StandBusiness
         Task<Stand> AddStand(StandDTO standDTO);
 
         Task UpdateStand(StandDTO standDTO);
+        Task UpdateStandQueue(StandDTO standDTO);
         Task UpdateStandBulk(List<StandDTO> standDTO);
         //Task UpdateStandProductId(List<StandDTO> standDTO);
 

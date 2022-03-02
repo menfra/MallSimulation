@@ -14,7 +14,7 @@ namespace BusinessLogics.Validators
             RuleFor(c => c.DisplayName).NotEqual("string");
             RuleFor(c => c.Name).NotEqual("string");
             RuleFor(c => c.Duration).GreaterThan(0);
-
+            RuleFor(c => c.Product.Id).NotEqual("string");
         }
     }
 }

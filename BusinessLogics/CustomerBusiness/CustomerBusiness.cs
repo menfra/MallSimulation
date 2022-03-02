@@ -70,11 +70,13 @@ namespace BusinessLogics.CustomerBusiness
 
                 // Update the stand the Customer joined
                 var updatedStand = _mapper.Map<StandDTO>(stand);
-                await _standBusiness.UpdateStand(updatedStand);
+                await _standBusiness.UpdateStandQueue(updatedStand);
 
-               // Update the customer with his currently joined queue
+                // Update the customer with his currently joined queue
+                customer.Products.Clear();
                 customer.CurrentStandJoined = stand.Id;
-                customer.Products.Add(new Product { Id = stand.Product.Id.ToString() });
+                customer.Products.Add(new Product { Id = stand.Product.Id.ToString(), DisplayName = stand.Product.DisplayName, Name = stand.Product.Name });
+                customer.DoneShopping = false;
                 await _dataServices.AddData(customer);
 
                 // A customerDTO is created 
@@ -190,6 +192,8 @@ namespace BusinessLogics.CustomerBusiness
 
                 // first get the customer
                 var customer = await _dataServices.GetDataByID<Customer>(customerId);
+                var stands = await _standBusiness.GetStands();
+
                 if (customer == null)
                 {
                     result.Status = true;
@@ -197,10 +201,18 @@ namespace BusinessLogics.CustomerBusiness
                     return result;
                 }
 
+                var customerProductIds = customer.Products.Select(c => c.Id).ToList();
+                if (!customerProductIds.Any(c=> stands.Select(s => s.Product.Id).Any(s=>s == c)))
+                {
+                    result.Status = true;
+                    result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The Customer has some products which has their stands removed. The purchase cannot continue now." });
+                    return result;
+                }
+
                 if (customer.Products.Count == 0)
                 {
                     result.Status = true;
-                    result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified has no products to purchase." });
+                    result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The Customer specified has no products to purchase." });
                     return result;
                 }
 

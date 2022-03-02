@@ -27,6 +27,9 @@ namespace BusinessLogics.StandBusiness
             try
             {
                 var stand = _mapper.Map<Stand>(standDTO);
+                stand.OutOfProducts = false;
+                stand.CustomerQueue.Clear();
+
                 return await _dataServices.AddData(stand);
             }
             catch (Exception)
@@ -168,6 +171,26 @@ namespace BusinessLogics.StandBusiness
 
                 // modify the Duration for the stand
                 stand.Duration = standDTO.Duration;
+                await _dataServices.UpSertData(stand.Id, stand);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task UpdateStandQueue(StandDTO standDTO)
+        {
+            try
+            {
+                // A customer is added to a queue on a stand
+                var stand = await GetStand(standDTO.Id);
+                if (stand == null)
+                    return;
+
+                // modify the Duration for the stand
+                stand.CustomerQueue = standDTO.CustomerQueue;
                 await _dataServices.UpSertData(stand.Id, stand);
             }
             catch (Exception)
