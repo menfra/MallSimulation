@@ -70,7 +70,7 @@ namespace BusinessLogics.StandBusiness
 
                 // Get the stand
                 var stands = await GetStands();
-                // Get the next potential stands
+                // Get the next potential stands which can be reasigned the customer queues
                 var nextPotentialstands = stands.Where(s => !Ids.Any(i => i == s.Id)).ToList();
 
                 if (nextPotentialstands != null)
@@ -79,20 +79,18 @@ namespace BusinessLogics.StandBusiness
                     foreach(var Id in Ids)
                     {
                         var stand = await GetStand(Id);
-                        if (stand != null && potentialStand != null)
+                        if (stand != null)
                         {
                             potentialStand.CustomerQueue.AddRange(stand.CustomerQueue);
                             await _dataServices.UpSertData(potentialStand.Id, potentialStand);
                             await _dataServices.DeleteData<Stand>(Id);
                         }
                     }
-                   
                 }
                 else
                 {
                     await _dataServices.DeleteDataBulk<Stand>(Ids);
                 }
-                // Assign customers to the next potential stand.
             }
             catch (Exception)
             {
@@ -106,12 +104,11 @@ namespace BusinessLogics.StandBusiness
             try
             {
                 // Get the stands
-                // Get the next potential stand
                 var stands = await GetStands();
-
+                // Get stands with product listed
                 var standsWithProductMatch = stands.Where(s => s.Product.Id == Id).ToList();
-                await _dataServices.DeleteDataBulk<Stand>(standsWithProductMatch.Select(i=>i.Id).ToList());
-                // Assign customers to the next potential stand.
+                // Delete stands with product match
+                await DeleteStandBulk(standsWithProductMatch.Select(i => i.Id).ToList());
             }
             catch (Exception)
             {
