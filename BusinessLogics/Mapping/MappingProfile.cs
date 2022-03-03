@@ -17,9 +17,6 @@ namespace BusinessLogics.Mapping
             CreateMap<StandDTO, Stand>();
             CreateMap<Stand, StandDTO>();
 
-            //CreateMap<List<StandDTO>, List<Stand>>();
-            //CreateMap<List<Stand>, List<StandDTO>>();
-
             CreateMap<CustomerDTO, Customer>();
             CreateMap<Customer, CustomerDTO>();
 

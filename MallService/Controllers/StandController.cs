@@ -30,7 +30,7 @@ namespace StandService.Controllers
                 if (stand != null)
                     return Created($"Stand with Id: {stand.Id} has been added.", stand.Id);
                 else
-                    return Problem($"Stand with Id: {stand.Id} has been added.", null, 500);
+                    return Problem($"Stand with Id: {stand.Id} could not be added.", null, 500);
             }
             catch (Exception ex)
             {

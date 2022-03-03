@@ -1,0 +1,10 @@
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\bin\Debug\netcoreapp3.1\MallServiceTest.deps.json
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\bin\Debug\netcoreapp3.1\MallServiceTest.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\bin\Debug\netcoreapp3.1\MallServiceTest.pdb
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.csproj.AssemblyReference.cache
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.AssemblyInfoInputs.cache
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.AssemblyInfo.cs
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.csproj.CoreCompileInputs.cache
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.dll
+C:\Users\FrankMensah\Desktop\PP\MallSimulation\MallServiceTest\obj\Debug\netcoreapp3.1\MallServiceTest.pdb

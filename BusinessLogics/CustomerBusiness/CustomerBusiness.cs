@@ -43,7 +43,7 @@ namespace BusinessLogics.CustomerBusiness
             try
             {
                 var result = new OperationalResult();
-                
+
                 if (_mallBusiness.GetMallOpenedStatus().OpenedState == DataAcess.Enums.States.Closed)
                 {
                     result.Status = true;
@@ -59,9 +59,8 @@ namespace BusinessLogics.CustomerBusiness
                     result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The stand specified could not be found" });
                     return result;
                 }
-                    
 
-                // A customer is created 
+                // A customer is created
                 var customer = _mapper.Map<Customer>(customerDTO);
 
                 // Check and add customer to queue
@@ -73,23 +72,20 @@ namespace BusinessLogics.CustomerBusiness
                 await _standBusiness.UpdateStandQueue(updatedStand);
 
                 // Update the customer with his currently joined queue
-                customer.Products.Clear();
                 customer.CurrentStandJoined = stand.Id;
                 customer.Products.Add(new Product { Id = stand.Product.Id.ToString(), DisplayName = stand.Product.DisplayName, Name = stand.Product.Name });
                 customer.DoneShopping = false;
                 await _dataServices.AddData(customer);
 
-                // A customerDTO is created 
+                // A customerDTO is created
                 var returncustomerDTO = _mapper.Map<CustomerDTO>(customer);
                 result.Data.Add(returncustomerDTO);
                 return result;
             }
             catch (Exception)
             {
-
                 throw;
             }
-           
         }
 
         /// <summary>
@@ -101,7 +97,7 @@ namespace BusinessLogics.CustomerBusiness
         {
             try
             {
-                var result = new OperationalResult(); 
+                var result = new OperationalResult();
 
                 // first get the customer
                 var customer = await _dataServices.GetDataByID<Customer>(customerId);
@@ -111,18 +107,16 @@ namespace BusinessLogics.CustomerBusiness
                     result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Customer specified could not be found" });
                     return result;
                 }
-                
-                // A customerDTO is created 
+
+                // A customerDTO is created
                 var returncustomerDTO = _mapper.Map<CustomerDTO>(customer);
                 result.Data.Add(returncustomerDTO);
                 return result;
             }
             catch (Exception)
             {
-
                 throw;
             }
-           
         }
 
         /// <summary>
@@ -136,7 +130,7 @@ namespace BusinessLogics.CustomerBusiness
                 var result = new OperationalResult();
                 var customers = await _dataServices.GetAllData<Customer>();
 
-                // A customerDTO is created 
+                // A customerDTO is created
                 var returncustomersDTO = _mapper.Map<List<CustomerDTO>>(customers);
                 result.Data.Add(returncustomersDTO);
 
@@ -144,10 +138,8 @@ namespace BusinessLogics.CustomerBusiness
             }
             catch (Exception)
             {
-
                 throw;
             }
-            
         }
 
         /// <summary>
@@ -174,7 +166,6 @@ namespace BusinessLogics.CustomerBusiness
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -202,7 +193,7 @@ namespace BusinessLogics.CustomerBusiness
                 }
 
                 var customerProductIds = customer.Products.Select(c => c.Id).ToList();
-                if (!customerProductIds.Any(c=> stands.Select(s => s.Product.Id).Any(s=>s == c)))
+                if (!customerProductIds.Any(c => stands.Select(s => s.Product.Id).Any(s => s == c)))
                 {
                     result.Status = true;
                     result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The Customer has some products which has their stands removed. The purchase cannot continue now." });
@@ -231,22 +222,21 @@ namespace BusinessLogics.CustomerBusiness
                 await _dataServices.UpSertData(customer.Id, customer);
                 await _dataServices.UpSertData(customer.Id, transactionData);
 
-                // A customerDTO is created 
+                // A customerDTO is created
                 var returncustomerDTO = _mapper.Map<CustomerDTO>(customer);
                 result.Data.Add(returncustomerDTO);
                 return result;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
         /// <summary>
         /// Handles the product addition operation
-        /// 
-        /// We assume that a 
+        ///
+        /// We assume that a
         /// </summary>
         /// <param name="customerId"></param>
         /// <param name="standDTO">A valid stand Id must be provided. That is an assumption</param>
@@ -274,7 +264,7 @@ namespace BusinessLogics.CustomerBusiness
                     result.ErrorList.Add(new Error { ErrorCode = 404, ErrorMessage = "The Stand specified could not be found" });
                     return result;
                 }
-                else if(stand.OutOfProducts)
+                else if (stand.OutOfProducts)
                 {
                     result.Status = true;
                     result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "This Stand is out of products. Kindly move to another Stand" });
@@ -282,14 +272,14 @@ namespace BusinessLogics.CustomerBusiness
                 }
 
                 var customerTransaction = await _dataServices.GetDataByID<Transactions>(customerId);
-                if(customerTransaction!= null && customerTransaction.BoughtProducts.Any(p=>p.Id == stand.Product.Id))
+                if (customerTransaction != null && customerTransaction.BoughtProducts.Any(p => p.Id == stand.Product.Id))
                 {
                     result.Status = true;
                     result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The product has already been bought, You cannot purchase from this stand again." });
                     return result;
                 }
 
-                if (customer.Products.Any(p=>p.Id == stand.Product.Id))
+                if (customer.Products.Any(p => p.Id == stand.Product.Id))
                 {
                     result.Status = true;
                     result.ErrorList.Add(new Error { ErrorCode = 500, ErrorMessage = "The product is already in the list of Items to buy." });
@@ -302,20 +292,18 @@ namespace BusinessLogics.CustomerBusiness
                     return result;
                 }
 
-
                 // update the customers current stand and save the transaction info
                 customer.CurrentStandJoined = stand.Id;
                 customer.Products.Add(stand.Product);
                 await _dataServices.UpSertData(customer.Id, customer);
 
-                // A customerDTO is created 
+                // A customerDTO is created
                 var returncustomerDTO = _mapper.Map<CustomerDTO>(customer);
                 result.Data.Add(returncustomerDTO);
                 return result;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -342,7 +330,7 @@ namespace BusinessLogics.CustomerBusiness
                     return result;
                 }
 
-                // A customer is created 
+                // A customer is created
                 var customer = _mapper.Map<Customer>(customerResultDTO);
                 await _dataServices.UpSertData(customer.Id, customer);
 
@@ -350,7 +338,6 @@ namespace BusinessLogics.CustomerBusiness
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -377,7 +364,7 @@ namespace BusinessLogics.CustomerBusiness
                     }
                     else
                     {
-                        // A customer is created 
+                        // A customer is created
                         var customer = _mapper.Map<Customer>(customerResultDTO);
                         await _dataServices.UpSertData(customer.Id, customer);
                     }
@@ -387,7 +374,6 @@ namespace BusinessLogics.CustomerBusiness
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -419,7 +405,6 @@ namespace BusinessLogics.CustomerBusiness
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -432,7 +417,6 @@ namespace BusinessLogics.CustomerBusiness
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
